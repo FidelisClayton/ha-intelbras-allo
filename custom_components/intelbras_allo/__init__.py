@@ -6,9 +6,12 @@ from collections.abc import Callable
 
 from homeassistant.const import EVENT_HOMEASSISTANT_STOP
 from homeassistant.exceptions import ConfigEntryAuthFailed, ConfigEntryError
+from homeassistant.helpers import config_validation as cv
 
 from .const import DOMAIN, PLATFORMS
 from .helper import Helper, HelperError
+
+CONFIG_SCHEMA = cv.config_entry_only_config_schema(DOMAIN)
 
 
 @dataclass

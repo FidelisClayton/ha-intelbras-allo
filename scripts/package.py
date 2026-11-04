@@ -15,6 +15,7 @@ GO_VERSION = "go1.26.3"
 BINARY_NAME = "bin/allo-ha-linux-amd64"
 RUNTIME_FILES = (
     "__init__.py",
+    "brand/icon.png",
     "camera.py",
     "config_flow.py",
     "const.py",

@@ -1,11 +1,22 @@
 """Candidate archives contain only explicitly reviewed runtime files."""
 
+from pathlib import Path
 import stat
+import struct
 import zipfile
 
 import pytest
 
 from scripts.package import BINARY_NAME, RUNTIME_FILES, collect_archive, write_archive
+
+
+def test_original_brand_icon_is_packaged_rgba_png():
+    integration = Path(__file__).resolve().parents[1] / "custom_components/intelbras_allo"
+    assert "brand/icon.png" in RUNTIME_FILES
+    icon = (integration / "brand/icon.png").read_bytes()
+    assert icon[:8] == b"\x89PNG\r\n\x1a\n"
+    assert icon[8:16] == b"\x00\x00\x00\rIHDR"
+    assert struct.unpack(">IIBBBBB", icon[16:29]) == (256, 256, 8, 6, 0, 0, 0)
 
 
 @pytest.fixture

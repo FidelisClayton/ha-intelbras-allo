@@ -233,3 +233,33 @@ func TestDiscoverRepeatsWithinDeadline(t *testing.T) {
 		}
 	})
 }
+
+// A deadline can pass before its cancellation has propagated to child contexts.
+type pendingDeadlineContext struct {
+	context.Context
+	deadline time.Time
+}
+
+func (c pendingDeadlineContext) Deadline() (time.Time, bool) { return c.deadline, true }
+
+type deadlineTransport struct {
+	fakeTransport
+	deadline time.Time
+}
+
+func (f *deadlineTransport) receive(context.Context) ([]byte, netip.Addr, error) {
+	time.Sleep(time.Until(f.deadline))
+	return nil, netip.Addr{}, context.DeadlineExceeded
+}
+
+func TestDiscoverDoesNotSendAfterDeadlineBeforeCancellation(t *testing.T) {
+	synctest.Test(t, func(t *testing.T) {
+		deadline := time.Now().Add(4 * time.Second)
+		ctx := pendingDeadlineContext{Context: context.Background(), deadline: deadline}
+		f := &deadlineTransport{deadline: deadline}
+		_, err := discover(ctx, "TESTDEVICE01", func(context.Context) (transport, error) { return f, nil })
+		if !errors.Is(err, ErrTimeout) || f.sent != 1 || !f.closed || !time.Now().Equal(deadline) {
+			t.Fatalf("expired discovery with pending cancellation: sends=%d, err=%v", f.sent, err)
+		}
+	})
+}

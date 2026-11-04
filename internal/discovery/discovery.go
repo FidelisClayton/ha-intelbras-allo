@@ -42,6 +42,7 @@ func discover(ctx context.Context, uid string, open func(context.Context) (trans
 	}
 	ctx, cancel := context.WithTimeout(ctx, 5*time.Second)
 	defer cancel()
+	deadline, _ := ctx.Deadline()
 	if err := ctx.Err(); err != nil {
 		return netip.Addr{}, err
 	}
@@ -73,7 +74,7 @@ func discover(ctx context.Context, uid string, open func(context.Context) (trans
 			if errors.Is(ctx.Err(), context.Canceled) {
 				return netip.Addr{}, context.Canceled
 			}
-			if ctx.Err() != nil {
+			if ctx.Err() != nil || !time.Now().Before(deadline) {
 				if malformed {
 					return netip.Addr{}, ErrDecode
 				}

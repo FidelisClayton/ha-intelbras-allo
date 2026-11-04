@@ -1,6 +1,7 @@
 {
   "domain": "intelbras_allo",
   "name": "Intelbras Allo",
+  "after_dependencies": ["http", "lovelace"],
   "codeowners": ["@FidelisClayton"],
   "config_flow": true,
   "dependencies": ["websocket_api"],
