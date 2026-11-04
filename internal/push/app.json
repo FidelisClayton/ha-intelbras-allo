@@ -1,0 +1,13 @@
+{
+  "project_id": "tdk-app",
+  "app_id": "1:852288695552:android:71ee2bc549c0c91798d7e5",
+  "api_key": "AIzaSyCbNOM03ymHLdRcrNfxn4CRu222flxbsEw",
+  "sender_id": "852288695552",
+  "package_name": "com.intelbras.alloplus",
+  "package_cert_sha1": "D83562506F498583BB70CC6868B56E0C2B830834",
+  "app_version_code": "19",
+  "app_version_name": "2.4.77.17",
+  "client_version": "fcm-23.1.2",
+  "os_version": "30",
+  "target_version": "34"
+}

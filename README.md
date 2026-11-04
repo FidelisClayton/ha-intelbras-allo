@@ -6,7 +6,7 @@ Integração independente e não oficial para atender o interfone Intelbras Allo
 
 ## Escopo da primeira versão
 
-As funções abaixo são objetivos da primeira versão, ainda não disponíveis neste repositório:
+As funções abaixo são objetivos da primeira versão e ainda não foram validadas como uma versão completa:
 
 - **Instalação e conta:** instalação pelo HACS no Home Assistant Core/Container, com e-mail, senha e seleção de um dispositivo da própria conta. Sem Supervisor, compilação local, serviço administrado à parte, extração de APK, perfil privado do aplicativo ou chave TLS fornecida pelo usuário.
 - **Campainha:** evento de acionamento físico filtrado para o dispositivo selecionado, sem gerar um acionamento ao iniciar. Cada instalação terá sua própria identidade de receptor, preservando as notificações do celular.
@@ -17,9 +17,9 @@ O primeiro alvo é o Allo Box/IDS7969AW em Linux amd64. Outros modelos e platafo
 
 ## Arquitetura e validação pendente
 
-O núcleo de protocolo será um processo Go, com um adaptador Python fino para o Home Assistant. Antes de disponibilizar uma versão, ainda é necessário demonstrar a configuração em uma instalação limpa com apenas a conta do proprietário, o empacotamento pelo HACS e o vídeo e áudio ao vivo, incluindo a conversa pelo microfone do iPhone.
+O repositório contém um núcleo de protocolo em Go, um adaptador Python para o Home Assistant e o cartão de atendimento em desenvolvimento. O [empacotamento de candidatos](docs/installation.md) prepara arquivos para validação, sem publicar uma versão. Um candidato foi configurado em uma instalação isolada do Home Assistant 2026.10.4, com identidade própria de receptor, e reproduziu vídeo real de 480×240 no navegador. Em 2026-11-04, o proprietário confirmou o acionamento físico da campainha e o áudio audível nos dois sentidos usando Listen e Hold to talk no iPhone. Essa confirmação não mede latência, entrega de exatamente um evento por acionamento, áudio simultâneo ou codecs. Antes de disponibilizar uma versão, ainda é necessário validar a instalação pelo HACS e os [demais critérios de aceitação](docs/installation.md#gates-before-the-first-release), incluindo a interrupção da transmissão ao soltar o controle, sair da visualização, perder a sessão e descarregar a integração.
 
-A validação deve preservar a cadeia TLS, os pins exatos aprovados e a lista permitida de destinos, sem redirecionamentos. Chaves privadas, certificados capturados, credenciais e perfis privados não serão distribuídos.
+A validação preserva a cadeia TLS, os pins exatos aprovados e a lista permitida de destinos, sem redirecionamentos. A única exceção de distribuição de certificados capturados é a [CA pública Qualvision](internal/bootstrap/assets/qualvision-ca.pem), aprovada explicitamente para este projeto. Chaves privadas, certificados de cliente, credenciais e perfis privados não serão distribuídos.
 
 ## Fora do escopo
 

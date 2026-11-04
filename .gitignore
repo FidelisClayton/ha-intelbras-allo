@@ -1,0 +1,31 @@
+# Local private state and diagnostic output; release assets are not excluded.
+/.config/
+/.local/
+/private/
+/state/
+/profiles/
+/captures/
+/artifacts/
+.env
+.env.*
+*.key
+*.pem
+!/internal/bootstrap/assets/qualvision-ca.pem
+*.crt
+*.cer
+*.p12
+*.pfx
+*.apk
+*.pcap
+*.pcapng
+
+# Local development environments and caches.
+.venv/
+venv/
+node_modules/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.DS_Store
