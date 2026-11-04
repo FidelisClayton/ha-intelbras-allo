@@ -1,5 +1,7 @@
 # Synthetic WebRTC transport evidence
 
+**Historical milestone:** this document records the synthetic transport milestone on 2026-11-04. Statements below about missing integration, packaging, UI and native bridging describe that milestone, not the current implementation. See the [installation gates](installation.md#gates-before-the-first-release) for current candidate validation, owner-reported physical confirmation and remaining release requirements.
+
 This repository contains an encoded-media transport seam, not an installable Home Assistant integration. These results use two in-process Go peers and synthetic media on Linux amd64. No device, browser, account service, private configuration or production bridge was accessed.
 
 ## Dependency and media boundary
