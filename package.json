@@ -1,0 +1,10 @@
+{
+  "name": "intelbras-allo-card",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "playwright test",
+    "check": "node --check custom_components/intelbras_allo/frontend/allo-intercom-card.js"
+  },
+  "devDependencies": { "@playwright/test": "1.62.1" }
+}

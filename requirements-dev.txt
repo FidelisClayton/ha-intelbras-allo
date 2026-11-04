@@ -1,0 +1,4 @@
+homeassistant==2026.10.4
+pytest-homeassistant-custom-component==0.13.375
+ruff==0.14.3
+PyTurboJPEG==1.8.3

@@ -1,0 +1,41 @@
+{
+  "title": "Intelbras Allo",
+  "config": {
+    "step": {
+      "user": {
+        "title": "Sign in to Intelbras Allo",
+        "data": {
+          "email": "Email",
+          "password": "Password"
+        }
+      },
+      "device": {
+        "title": "Choose an account device",
+        "data": {
+          "device_id": "Device"
+        }
+      },
+      "reauth_confirm": {
+        "title": "Sign in again",
+        "data": {
+          "email": "Email",
+          "password": "Password"
+        }
+      }
+    },
+    "error": {
+      "invalid_auth": "Authentication failed.",
+      "cannot_connect": "Cannot connect to the helper.",
+      "account_mismatch": "Use the same account as this integration.",
+      "device_missing": "Device unavailable."
+    },
+    "abort": {
+      "already_configured": "This account device is already configured.",
+      "no_devices": "No devices were returned for this account.",
+      "device_missing": "The selected device is no longer available to this account.",
+      "cannot_connect": "Cannot prepare device credentials.",
+      "reauth_successful": "Authentication updated.",
+      "unique_id_mismatch": "The account and device must match the existing entry."
+    }
+  }
+}
